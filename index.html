@@ -3,650 +3,751 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abyssborn - Psychological Horror Game</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Abyssborn | Psychological Horror Game</title>
+    <meta name="description" content="Escape the nightmare in Abyssborn - A psychological horror game with time-based survival mechanics">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="abyssborn-favicon.png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Base styles */
+        /* ===== Enhanced Professional Styles ===== */
+        :root {
+            --primary: #c08040;
+            --primary-dark: #a06830;
+            --primary-light: #e09050;
+            --text: #f0f0f0;
+            --text-secondary: #b0b0b0;
+            --bg-dark: #0a0508;
+            --bg-darker: #050203;
+            --accent: #ff5500;
+        }
+        
         body {
             margin: 0;
             padding: 0;
             font-family: 'Roboto', sans-serif;
-            color: #e0e0e0;
+            color: var(--text);
+            background-color: var(--bg-dark);
+            line-height: 1.6;
             overflow-x: hidden;
-            background-color: #0a0a0a;
         }
-        
-        /* Animated dungeon background */
-        /* Updated Background Styles */
-.dungeon-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(70, 30, 0, 0.8) 0%, transparent 30%),
-        radial-gradient(circle at 80% 70%, rgba(50, 20, 0, 0.8) 0%, transparent 30%),
-        linear-gradient(to bottom, #2a1a00 0%, #1a0a00 100%);
-    background-size: 200% 200%;
-    animation: dungeonPulse 15s ease infinite;
-}
 
-.dungeon-walls {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-image: 
-        url('https://www.transparenttextures.com/patterns/asfalt-dark.png'),
-        url('https://www.transparenttextures.com/patterns/black-linen.png');
-    background-blend-mode: overlay;
-    opacity: 0.2; /* Reduced opacity for better orange visibility */
-}
+        body {
+            background: linear-gradient(135deg, #0a0508, #1a0a1f, #0a0508);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
 
-/* Update particle color to match new theme */
-.particle {
-    background-color: rgba(255, 120, 50, 0.7); /* Brighter orange particles */
-}
-        .dungeon-walls {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image: 
-                url('https://www.transparenttextures.com/patterns/asfalt-dark.png'),
-                url('https://www.transparenttextures.com/patterns/black-linen.png');
-            background-blend-mode: overlay;
-            opacity: 0.3;
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
-        
-        /* Floating particles (torch embers) */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-        
-        .particle {
-            position: absolute;
-            background-color: rgba(255, 100, 50, 0.6);
-            border-radius: 50%;
-            filter: blur(1px);
-            animation: floatUp linear infinite;
-        }
-        
-        /* Flickering torch light effect */
-        .torch-light {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 150, 50, 0.15) 0%, rgba(255, 100, 0, 0) 70%);
-            z-index: -1;
-            animation: torchFlicker 3s ease infinite alternate;
-        }
-        
-        /* Keyframe animations */
-        @keyframes dungeonPulse {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
-        }
-        
-        @keyframes floatUp {
-            to { transform: translateY(-100vh); }
-        }
-        
-        @keyframes torchFlicker {
-            0%, 100% { opacity: 0.8; transform: scale(1); }
-            25% { opacity: 0.6; transform: scale(0.95); }
-            50% { opacity: 1; transform: scale(1.05); }
-            75% { opacity: 0.7; transform: scale(0.98); }
-        }
-        
-        /* Header styles */
+
+        /* ===== Professional Header ===== */
         header {
-            background-color: rgba(10, 5, 15, 0.85);
+            background: linear-gradient(to bottom, rgba(10,5,15,0.95), rgba(10,5,15,0.85));
             position: fixed;
             width: 100%;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            transform: translateY(0);
-            transition: transform 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
         }
-        
-        header.hidden {
-            transform: translateY(-100%);
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        
-        /* Navigation Link Animations */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Cinzel Decorative', serif;
+            color: var(--primary);
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 100, 0, 0.3);
+        }
+
+        /* ===== Professional Navigation ===== */
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
         nav a {
             position: relative;
-            color: #e0e0e0;
+            color: var(--text);
             text-decoration: none;
-            padding: 5px 10px;
+            font-weight: 500;
             font-size: 1.1rem;
+            padding: 8px 0;
             transition: all 0.3s ease;
+            letter-spacing: 0.5px;
         }
-        
-        nav a::before {
+
+        nav a::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: #c08040;
-            transition: width 0.3s ease, opacity 0.3s ease;
-            opacity: 0;
+            background-color: var(--primary);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        
-        nav a:hover::before {
+
+        nav a:hover::after,
+        nav a.active::after {
             width: 100%;
-            opacity: 1;
         }
-        
-        nav a.active::before {
-            width: 100%;
-            opacity: 1;
-            background-color: #ff5500;
+
+        nav a.active {
+            color: var(--primary);
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-        
-        h1 {
-            font-family: 'Cinzel Decorative', serif;
-            color: #c08040;
-            text-shadow: 0 0 10px rgba(255, 100, 0, 0.5);
-            margin: 0;
-            font-size: 2rem;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        nav li {
-            margin-left: 30px;
-        }
-        
-        /* Section styles */
-        section {
-            padding: 100px 0;
-            position: relative;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        h2 {
-            font-family: 'Cinzel Decorative', serif;
-            color: #c08040;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            text-align: center;
-            text-shadow: 0 0 10px rgba(255, 100, 0, 0.3);
-        }
-        
-        /* Hero section */
+
+        /* ===== Hero Section ===== */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
-            text-align: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0));
+            position: relative;
+            overflow: hidden;
         }
-        
-        .hero h2 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            animation: textGlow 2s ease infinite alternate;
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, 
+                        rgba(192,128,64,0.1) 0%, 
+                        rgba(10,5,15,0.9) 70%);
+            z-index: -1;
         }
-        
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
+
+        .hero-content {
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
         }
-        
+
+        .hero h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 4.5rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(255,85,0,0.4);
+            line-height: 1.2;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* ===== Professional Button Styles ===== */
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: #c08040;
-            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s;
-            border: 2px solid #c08040;
-            transform: translateY(0);
-            box-shadow: 0 4px 15px rgba(208, 144, 80, 0.4);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(192, 128, 64, 0.4);
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                      transparent, 
+                      rgba(255,255,255,0.2), 
+                      transparent);
+            transition: all 0.6s ease;
+        }
+
         .btn:hover {
-            background-color: transparent;
-            color: #c08040;
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(208, 144, 80, 0.6);
         }
-        
-        /* About section */
-        .about {
-            background-color: rgba(10, 5, 15, 0.7);
-            backdrop-filter: blur(5px);
+
+        .btn:hover::before {
+            left: 100%;
         }
-        
-        .about .container {
-            border: 3px solid #c08040;
-            border-radius: 10px;
-            padding: 40px;
-            box-shadow: 0 0 20px rgba(192, 128, 64, 0.3);
-            background: rgba(10, 5, 15, 0.5);
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
         }
-        
-        .about p {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.2rem;
-            line-height: 1.6;
-            text-align: center;
-        }
-        
-        /* Gallery section */
-        .gallery {
-            background-color: rgba(5, 5, 10, 0.7);
-            backdrop-filter: blur(5px);
-        }
-        
-        .slider {
+
+        /* ===== Section Styles ===== */
+        section {
+            padding: 100px 0;
             position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
         }
-        
-        .slides {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+        .section-title {
+            font-family: 'Cinzel Decorative', serif;
+            color: var(--primary);
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        
-        .slide {
-            min-width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        
-        .image-container {
-            border: 3px solid #c08040;
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(192, 128, 64, 0.3);
-            height: 450px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(10, 5, 15, 0.5);
-        }
-        
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-        }
-        
-        /* Enhanced Arrow Buttons */
-        .prev, .next {
+
+        .section-title::after {
+            content: '';
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: rgba(20, 10, 25, 0.8);
-            color: #c08040;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
         }
-        
-        .prev:hover, .next:hover {
-            background: rgba(192, 128, 64, 0.9);
-            color: #111;
-            transform: translateY(-50%) scale(1.1);
-        }
-        
-        .prev {
-            left: 20px;
-        }
-        
-        .next {
-            right: 20px;
-        }
-        
-        .prev svg, .next svg {
-            width: 30px;
-            height: 30px;
-            filter: drop-shadow(0 0 5px rgba(255, 100, 0, 0.7));
-        }
-        
-        /* Blog section */
-        .blog {
-            background-color: rgba(10, 5, 15, 0.7);
-            backdrop-filter: blur(5px);
-        }
-        
-        .blog-posts {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 30px;
         }
-        
-        .blog-post {
-            background-color: rgba(20, 10, 25, 0.8);
-            padding: 30px;
+
+        /* ===== About Section ===== */
+        .about {
+            background: linear-gradient(to bottom, 
+                      rgba(10,5,15,0.9), 
+                      rgba(5,2,8,0.95));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
             border-radius: 10px;
-            width: calc(50% - 15px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
-            border: 3px solid #c08040;
-            transform: perspective(1000px) rotateX(0);
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            border: 2px solid var(--primary);
         }
-        
-        .blog-post:hover {
-            transform: perspective(1000px) rotateX(5deg) translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
         }
-        
-        .blog-post h3 {
-            color: #c08040;
-            margin-top: 0;
+
+        .about-image:hover img {
+            transform: scale(1.05);
         }
-        
-        /* Contact section */
+
+        /* ===== Game Features ===== */
+        .features {
+            background-color: var(--bg-darker);
+            padding: 100px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: rgba(20,10,25,0.7);
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(192,128,64,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                      rgba(192,128,64,0.1), 
+                      transparent);
+            z-index: -1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: linear-gradient(to bottom, var(--bg-darker), #000);
+            padding: 60px 0 30px;
+            position: relative;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(192,128,64,0.2);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+
+        /* ===== Contact Section ===== */
         .contact {
-            background-color: rgba(5, 5, 10, 0.7);
-            backdrop-filter: blur(5px);
+            background: linear-gradient(to bottom, rgba(10, 5, 15, 0.9), rgba(5, 2, 8, 0.95));
+            padding: 100px 0;
+            color: var(--text);
         }
-        
-        form {
+
+        .contact-description {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: var(--text-secondary);
+        }
+
+        .contact-form {
             max-width: 600px;
             margin: 0 auto;
-            background-color: rgba(20, 10, 25, 0.8);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            border: 3px solid #c08040;
         }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #c08040;
-            font-size: 1.1rem;
+
+        .form-group {
+            margin-bottom: 20px;
         }
-        
-        input, textarea {
+
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 25px;
-            border: 1px solid #333;
-            background-color: rgba(30, 20, 35, 0.8);
-            color: #e0e0e0;
+            padding: 15px;
+            border: 1px solid rgba(255, 85, 0, 0.5);
             border-radius: 5px;
+            background: rgba(20, 10, 25, 0.8);
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
             transition: all 0.3s ease;
         }
-        
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #c08040;
-            box-shadow: 0 0 10px rgba(192, 128, 64, 0.5);
-            transform: scale(1.02);
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(255, 85, 0, 0.5);
         }
-        
-        textarea {
-            height: 150px;
-            resize: vertical;
-        }
-        
-        button[type="submit"] {
-            background-color: #c08040;
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
-            padding: 15px 30px;
-            cursor: pointer;
             border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s;
-            width: 100%;
             font-size: 1.1rem;
-        }
-        
-        button[type="submit"]:hover {
-            background-color: #a06830;
-            transform: translateY(-2px);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: rgba(10, 5, 15, 0.9);
-            padding: 20px 0;
-            text-align: center;
-            border-top: 1px solid rgba(192, 128, 64, 0.3);
-        }
-        
-        /* Text glow animation */
-        @keyframes textGlow {
-            from { text-shadow: 0 0 5px #ff5500; }
-            to { text-shadow: 0 0 15px #ff3300, 0 0 25px #ff0000; }
-        }
-        .download {
-            background-color: rgba(30, 15, 5, 0.7);
-            backdrop-filter: blur(5px);
-        }
-
-        .download-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 40px;
-            border: 3px solid #c08040;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(192, 128, 64, 0.3);
-            background: rgba(20, 10, 5, 0.5);
-        }
-
-        .download-steps {
-            text-align: left;
-            margin: 30px 0;
-            padding: 0 20px;
-        }
-
-        .download-steps li {
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        .download-btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background-color: #c08040;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
             font-weight: bold;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-            border: 2px solid #c08040;
-            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .download-btn:hover {
-            background-color: #e09050;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(224, 144, 80, 0.5);
+        .btn:hover {
+            background: var(--primary-light);
+            box-shadow: 0 5px 15px rgba(255, 85, 0, 0.5);
         }
 
-        .system-reqs {
-            margin-top: 40px;
-            background: rgba(10, 5, 0, 0.5);
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 3px solid #c08040;
+        #particles-js {
+            position: fixed; /* Fixed position to cover the entire viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensure it stays behind all other content */
+            background: linear-gradient(to bottom, #0a0508, #050203); /* Optional fallback background */
         }
 
-        /* New Animation Classes */
-        .fade-in {
-            animation: fadeIn 1s ease forwards;
-        }
-
-        .slide-in-left {
-            animation: slideInLeft 1s ease forwards;
-        }
-
-        .slide-in-right {
-            animation: slideInRight 1s ease forwards;
-        }
-
-        .scale-up {
-            animation: scaleUp 1s ease forwards;
-        }
-
-        .rotate-in {
-            animation: rotateIn 1s ease forwards;
-        }
-
-        .float-up {
-            animation: floatUpElement 1s ease forwards;
-        }
-
-        /* Keyframes for new animations */
+        /* Fade-in animation */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
+        /* Slide-in from left */
         @keyframes slideInLeft {
-            from { transform: translateX(-100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        @keyframes slideInRight {
-            from { transform: translateX(100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        /* Zoom-in animation */
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
-        @keyframes scaleUp {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+        /* Apply animations */
+        .animate-fade {
+            animation: fadeIn 1s ease-out forwards;
         }
 
-        @keyframes rotateIn {
-            from { transform: rotate(-5deg) scale(0.8); opacity: 0; }
-            to { transform: rotate(0) scale(1); opacity: 1; }
+        .animate-slide-left {
+            animation: slideInLeft 1s ease-out forwards;
         }
 
-        @keyframes floatUpElement {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .animate-zoom {
+            animation: zoomIn 1s ease-out forwards;
         }
 
-        /* Section-specific animation triggers */
-        .hero.visible .container {
-            animation: fadeIn 1s ease 0.3s forwards;
-        }
-
-        .about.visible .container {
-            animation: slideInLeft 1s ease 0.3s forwards;
-        }
-
-        .gallery.visible .container {
-            animation: slideInRight 1s ease 0.3s forwards;
-        }
-
-        .download.visible .download-content {
-            animation: scaleUp 1s ease 0.3s forwards;
-        }
-
-        .blog.visible .blog-posts {
-            animation: fadeIn 1s ease 0.3s forwards;
-        }
-
-        .contact.visible form {
-            animation: rotateIn 1s ease 0.3s forwards;
-        }
-
-        /* Initially hide animated elements */
-        .hero .container,
-        .about .container,
-        .gallery .container,
-        .download .download-content,
-        .blog .blog-posts,
-        .contact form {
+        /* Initial state for elements before animation */
+        .hidden {
             opacity: 0;
         }
+
+        /* Chatbot Toggle Button */
+        #chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        #chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Chatbot Container */
+        #chatbot {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 300px;
+            background: rgba(20, 10, 25, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        /* Chatbot Header */
+        #chatbot-header {
+            background: var(--primary);
+            color: white;
+            padding: 10px;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chatbot-header button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* Chatbot Messages */
+        #chatbot-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            max-height: 300px;
+            color: var(--text);
+        }
+
+        .chatbot-message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .chatbot-message.user {
+            background: var(--primary-light);
+            color: white;
+            align-self: flex-end;
+        }
+
+        .chatbot-message.bot {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            align-self: flex-start;
+        }
+
+        /* Chatbot Input */
+        #chatbot-input {
+            display: flex;
+            padding: 10px;
+            background: rgba(20, 10, 25, 0.9);
+        }
+
+        #chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            outline: none;
+        }
+
+        #chatbot-input button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        #chatbot-input button:hover {
+            background: var(--primary-light);
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.0/tsparticles.bundle.min.js"></script>
 </head>
 <body>
-    <!-- Enhanced Background Elements -->
-    <div class="dungeon-bg"></div>
-    <div class="dungeon-walls"></div>
-    <div class="particles" id="particles"></div>
-    <div class="torch-light" style="top: 30%; left: 20%;"></div>
-    <div class="torch-light" style="top: 60%; left: 80%;"></div>
-    
-    <!-- Header -->
-    <header id="main-header">
+    <div id="particles-js"></div>
+    <!-- Professional Header -->
+    <header id="header">
         <div class="container">
-            <h1>Abyssborn</h1>
+            <div class="logo">
+                <img src="abyssborn-logo.png" alt="Abyssborn Logo">
+                <span class="logo-text">ABYSSBORN</span>
+            </div>
             <nav>
                 <ul>
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#download">Download</a></li>
-                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#features">Features</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -654,102 +755,113 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero visible">
-        <div class="container">
-            <h2>Dive into the Abyss</h2>
-            <p>A dark and immersive game where every second counts.</p>
-            <a href="#about" class="btn">Learn More</a>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hidden">DIVE INTO THE ABYSS</h1>
+            <p class="hidden">A psychological horror experience that will test your survival instincts in a nightmarish illusion</p>
+            <div class="hero-buttons">
+                <a href="#download" class="btn hidden">Download Now</a>
+                <a href="#trailer" class="btn btn-outline hidden">Watch Trailer</a>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2>About Abyssborn</h2>
-            <p>Abyssborn is a psychological horror game where you must escape a surreal illusion by collecting keys before time runs out. With a relentless stalker chasing you, every decision matters.</p>
+            <h2 class="section-title">About The Game</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Escape the Nightmare</h3>
+                    <p>Abyssborn is a first-person psychological horror game where you must escape a surreal illusion by collecting keys before time runs out. With a relentless stalker chasing you, every decision matters.</p>
+                    <p>Set in a decaying hotel that shifts and changes around you, the game creates an atmosphere of constant dread and uncertainty. The environment itself is your enemy.</p>
+                    <p>Developed using Godot Engine, Abyssborn features advanced AI behavior, dynamic lighting, and a haunting original soundtrack.</p>
+                </div>
+                <div class="about-image">
+                    <img src="game-screenshot.jpg" alt="Abyssborn Game Screenshot">
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
+    <!-- Features Section -->
+    <section id="features" class="features">
         <div class="container">
-            <h2>Gallery</h2>
-            <div class="slider">
-                <div class="slides">
-                    <div class="slide">
-                        <div class="image-container">
-                            <img src="Godot Engine Screenshot 2025.03.24 - 09.33.02.04.png" alt="Screenshot 1">
-                        </div>
+            <h2 class="section-title">Game Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
                     </div>
-                    <div class="slide">
-                        <div class="image-container">
-                            <img src="placeholder2.jpg" alt="Screenshot 2">
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="image-container">
-                            <img src="placeholder3.jpg" alt="Screenshot 3">
-                        </div>
-                    </div>
+                    <h3>Psychological Horror</h3>
+                    <p>Experience true psychological terror with mind-bending environments and unpredictable scares</p>
                 </div>
-                <button class="prev" id="prevBtn">
-                    <svg viewBox="0 0 24 24" width="24" height="24">
-                        <path fill="currentColor" d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
-                    </svg>
-                </button>
-                <button class="next" id="nextBtn">
-                    <svg viewBox="0 0 24 24" width="24" height="24">
-                        <path fill="currentColor" d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-                    </svg>
-                </button>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Time Pressure</h3>
+                    <p>The clock is ticking - solve puzzles and find keys before time runs out</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Advanced AI</h3>
+                    <p>The stalker learns from your behavior, adapting its hunting patterns</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Dynamic Soundtrack</h3>
+                    <p>Original music that reacts to your actions and intensifies the horror</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Smart Lighting</h3>
+                    <p>Realistic shadows and light effects that create an atmosphere of dread</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-random"></i>
+                    </div>
+                    <h3>Procedural Elements</h3>
+                    <p>Certain game elements change with each playthrough for replayability</p>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Download Section -->
     <section id="download" class="download">
         <div class="container">
-            <h2>Download Abyssborn</h2>
-            <div class="download-content">
-                <p>Get ready to experience the horror. Download Abyssborn now for Windows.</p>
-                
-                <a href="#" class="download-btn">DOWNLOAD NOW</a>
-                
-                <div class="download-steps">
-                    <h3>Installation Instructions:</h3>
-                    <ol>
-                        <li>Click the download button above</li>
-                        <li>Run the installer (Abyssborn_Setup.exe)</li>
-                        <li>Follow the on-screen instructions</li>
-                        <li>Launch the game from your desktop shortcut</li>
-                        <li>Prepare for the horror to begin...</li>
-                    </ol>
-                </div>
-                
-                <div class="system-reqs">
-                    <h3>System Requirements:</h3>
-                    <ul>
-                        <li><strong>OS:</strong> Windows 10/11 64-bit</li>
-                        <li><strong>Processor:</strong> Intel Core i5-4460 or AMD FX-8350</li>
-                        <li><strong>Memory:</strong> 8 GB RAM</li>
-                        <li><strong>Graphics:</strong> NVIDIA GTX 760 or AMD Radeon R7 260x</li>
-                        <li><strong>Storage:</strong> 15 GB available space</li>
-                    </ul>
-                </div>
+            <h2 class="section-title">Download Abyssborn</h2>
+            <p class="download-description">Before downloading Abyssborn, make sure your system meets the following requirements:</p>
+            <div class="requirements">
+                <ul>
+                    <li><strong>OS:</strong> Windows 10 (64-bit) or later</li>
+                    <li><strong>Processor:</strong> Intel Core i5 or AMD equivalent</li>
+                    <li><strong>Memory:</strong> 8 GB RAM</li>
+                    <li><strong>Graphics:</strong> NVIDIA GTX 960 or AMD Radeon R9 280</li>
+                    <li><strong>Storage:</strong> 20 GB available space</li>
+                    <li><strong>DirectX:</strong> Version 11</li>
+                </ul>
             </div>
-        </div>
-    </section>
-    <!-- Blog Section -->
-    <section id="blog" class="blog">
-        <div class="container">
-            <h2>Development Blog</h2>
-            <div class="blog-posts">
-                <div class="blog-post">
-                    <h3>New Enemy AI Implemented</h3>
-                    <p>We've just finished coding the stalker's AI. It's smarter, faster, and more terrifying than ever!</p>
-                </div>
-                <div class="blog-post">
-                    <h3>Environment Design Progress</h3>
-                    <p>The eerie hotel hallways are coming to life. Check out our latest screenshots in the gallery!</p>
-                </div>
+            <h3 class="steps-title">Steps to Download and Install</h3>
+            <div class="steps">
+                <ol>
+                    <li>Click the <strong>Download Now</strong> button below to download the game setup file.</li>
+                    <li>Once the download is complete, locate the file <code>abyssborn-setup.exe</code> in your downloads folder.</li>
+                    <li>Double-click the setup file to start the installation process.</li>
+                    <li>Follow the on-screen instructions to complete the installation.</li>
+                    <li>After installation, launch the game from your desktop or start menu.</li>
+                </ol>
+            </div>
+            <div class="download-button">
+                <a href="abyssborn-setup.exe" class="btn" download>Download Now</a>
             </div>
         </div>
     </section>
@@ -757,233 +869,346 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2>Contact Us</h2>
-            <form id="contact-form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
+            <h2 class="section-title">Contact Us</h2>
+            <p class="contact-description">Have questions or feedback? We'd love to hear from you. Reach out to us using the form below or through our social media channels.</p>
+            <div class="contact-form">
+                <form action="https://formspree.io/f/your-form-id" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
         </div>
     </section>
+
+    <!-- Chatbot -->
+    <div id="chatbot">
+        <div id="chatbot-header">
+            <span>Support Bot</span>
+            <button id="chatbot-close">&times;</button>
+        </div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input">
+            <input type="text" id="chatbot-text" placeholder="Ask me anything...">
+            <button id="chatbot-send">Send</button>
+        </div>
+    </div>
+    <button id="chatbot-toggle">💬</button>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Abyssborn. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Abyssborn</h3>
+                    <p>A psychological horror game developed by independent game studio Nightfall Interactive.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-steam"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                        <li><a href="#features"><i class="fas fa-chevron-right"></i> Features</a></li>
+                        <li><a href="#download"><i class="fas fa-chevron-right"></i> Download</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Report Bug</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Nightfall Interactive. All rights reserved. "Abyssborn" is a trademark of Nightfall Interactive.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- JavaScript for Interactivity -->
     <script>
-        // Enhanced Navigation with Smooth Animations
+        // Professional JavaScript for enhanced functionality
         document.addEventListener('DOMContentLoaded', function() {
-            // Create floating particles
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                const size = Math.random() * 5 + 2;
-                const posX = Math.random() * 100;
-                const delay = Math.random() * 5;
-                const duration = Math.random() * 15 + 10;
-                const opacity = Math.random() * 0.6 + 0.4;
-                
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}%`;
-                particle.style.bottom = `-10px`;
-                particle.style.animationDuration = `${duration}s`;
-                particle.style.animationDelay = `${delay}s`;
-                particle.style.opacity = opacity;
-                
-                particlesContainer.appendChild(particle);
-            }
-            
-            // Set up section animations
-            const sections = document.querySelectorAll('section');
-            
-            // Hide all sections except home initially
-            sections.forEach(section => {
-                if (section.id !== 'home') {
-                    section.style.opacity = '0';
-                    section.style.transform = 'translateY(30px)';
-                    section.style.transition = 'none';
-                    section.style.pointerEvents = 'none';
-                }
-            });
-            
-            // Smooth scrolling with animations
-            document.querySelectorAll('nav a').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    const headerOffset = 80;
-                    
-                    // Update active nav link
-                    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Fade out current section
-                    document.querySelector('section.active')?.classList.remove('active');
-                    
-                    // Fade in target section
-                    targetSection.style.opacity = '0';
-                    targetSection.style.transform = 'translateY(30px)';
-                    targetSection.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    targetSection.style.pointerEvents = 'auto';
-                    
-                    // Scroll to section
-                    window.scrollTo({
-                        top: targetSection.offsetTop - headerOffset,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Animate in the new section
-                    setTimeout(() => {
-                        targetSection.style.opacity = '1';
-                        targetSection.style.transform = 'translateY(0)';
-                        targetSection.classList.add('active');
-                    }, 300);
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 });
             });
             
-            // Initialize home as active
-            document.querySelector('nav a[href="#home"]').classList.add('active');
-            document.getElementById('home').classList.add('active');
-            
-            // Gallery slider
-            let slideIndex = 0;
-            const slides = document.querySelectorAll('.slide');
-            const totalSlides = slides.length;
-            let slideInterval;
-            
-            function initSlider() {
-                updateSlider();
-                startAutoSlide();
-                
-                // Event listeners for buttons
-                document.getElementById('prevBtn').addEventListener('click', () => {
-                    moveSlide(-1);
-                    resetAutoSlide();
-                });
-                
-                document.getElementById('nextBtn').addEventListener('click', () => {
-                    moveSlide(1);
-                    resetAutoSlide();
-                });
-            }
-            
-            function moveSlide(n) {
-                slideIndex += n;
-                
-                if (slideIndex >= totalSlides) slideIndex = 0;
-                if (slideIndex < 0) slideIndex = totalSlides - 1;
-                
-                updateSlider();
-            }
-            
-            function updateSlider() {
-                const offset = -slideIndex * 100;
-                document.querySelector('.slides').style.transform = `translateX(${offset}%)`;
-            }
-            
-            function startAutoSlide() {
-                slideInterval = setInterval(() => {
-                    moveSlide(1);
-                }, 5000);
-            }
-            
-            function resetAutoSlide() {
-                clearInterval(slideInterval);
-                startAutoSlide();
-            }
-            
-            initSlider();
-            
-            // Form submission
-            document.getElementById('contact-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const submitBtn = this.querySelector('button[type="submit"]');
-                
-                // Animate button on submit
-                submitBtn.textContent = 'Sending...';
-                submitBtn.style.transform = 'scale(0.95)';
-                
-                setTimeout(() => {
-                    submitBtn.textContent = 'Sent!';
-                    submitBtn.style.backgroundColor = '#4CAF50';
-                    
-                    setTimeout(() => {
-                        this.reset();
-                        submitBtn.textContent = 'Send Message';
-                        submitBtn.style.backgroundColor = '#c08040';
-                        submitBtn.style.transform = 'scale(1)';
-                    }, 1500);
-                }, 1000);
-            });
-            
-            // Header hide/show on scroll
+            // Header scroll effect
+            const header = document.getElementById('header');
             let lastScroll = 0;
-            const header = document.getElementById('main-header');
             
             window.addEventListener('scroll', function() {
                 const currentScroll = window.pageYOffset;
                 
                 if (currentScroll <= 0) {
-                    header.classList.remove('hidden');
+                    header.classList.remove('scroll-down');
+                    header.classList.remove('scroll-up');
                     return;
                 }
                 
-                if (currentScroll > lastScroll && !header.classList.contains('hidden')) {
-                    // Scroll down
-                    header.classList.add('hidden');
-                } else if (currentScroll < lastScroll && header.classList.contains('hidden')) {
-                    // Scroll up
-                    header.classList.remove('hidden');
+                if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
+                    header.classList.remove('scroll-up');
+                    header.classList.add('scroll-down');
+                } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
+                    header.classList.remove('scroll-down');
+                    header.classList.add('scroll-up');
                 }
                 
                 lastScroll = currentScroll;
             });
             
-            // Enhanced Intersection Observer for section animations
-            const observerOptions = {
-                threshold: 0.1
+            // Intersection Observer for animations
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.feature-card, .about-image, .section-title');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1
+                });
+                
+                elements.forEach(element => {
+                    observer.observe(element);
+                });
             };
             
-            const observer = new IntersectionObserver((entries) => {
+            animateOnScroll();
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            tsParticles.load("particles-js", {
+                particles: {
+                    number: {
+                        value: 80,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    color: {
+                        value: "#ffffff"
+                    },
+                    shape: {
+                        type: "circle",
+                        stroke: {
+                            width: 0,
+                            color: "#000000"
+                        },
+                        polygon: {
+                            nb_sides: 5
+                        },
+                        image: {
+                            src: "img/github.svg",
+                            width: 100,
+                            height: 100
+                        }
+                    },
+                    opacity: {
+                        value: 0.5,
+                        random: false,
+                        anim: {
+                            enable: false,
+                            speed: 1,
+                            opacity_min: 0.1,
+                            sync: false
+                        }
+                    },
+                    size: {
+                        value: 5,
+                        random: true,
+                        anim: {
+                            enable: false,
+                            speed: 40,
+                            size_min: 0.1,
+                            sync: false
+                        }
+                    },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#ffffff",
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 6,
+                        direction: "none",
+                        random: false,
+                        straight: false,
+                        out_mode: "out",
+                        attract: {
+                            enable: false,
+                            rotateX: 600,
+                            rotateY: 1200
+                        }
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: "repulse"
+                        },
+                        onclick: {
+                            enable: true,
+                            mode: "push"
+                        },
+                        resize: true
+                    },
+                    modes: {
+                        grab: {
+                            distance: 400,
+                            line_linked: {
+                                opacity: 1
+                            }
+                        },
+                        bubble: {
+                            distance: 400,
+                            size: 40,
+                            duration: 2,
+                            opacity: 8,
+                            speed: 3
+                        },
+                        repulse: {
+                            distance: 200
+                        },
+                        push: {
+                            particles_nb: 4
+                        },
+                        remove: {
+                            particles_nb: 2
+                        }
+                    }
+                },
+                retina_detect: true,
+                background: {
+                    color: "#b61924", // Background color
+                    image: "",
+                    position: "50% 50%",
+                    repeat: "no-repeat",
+                    size: "cover"
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.hidden');
+
+            const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        
-                        // Trigger content animations based on section
-                        const sectionId = entry.target.id;
-                        const contentElements = entry.target.querySelectorAll('.container, .download-content, .blog-posts, form');
-                        
-                        contentElements.forEach((element, index) => {
-                            // Add delay based on element position
-                            const delay = index * 0.2;
-                            element.style.animationDelay = `${delay}s`;
-                            
-                            // Make element visible to trigger animation
-                            setTimeout(() => {
-                                element.style.opacity = '1';
-                            }, 100);
-                        });
+                        console.log('Animating:', entry.target); // Debugging line
+                        if (entry.target.tagName === 'H1') {
+                            entry.target.classList.add('animate-zoom');
+                        } else if (entry.target.tagName === 'P') {
+                            entry.target.classList.add('animate-fade');
+                        } else if (entry.target.classList.contains('btn')) {
+                            entry.target.classList.add('animate-slide-left');
+                        }
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, observerOptions);
-            
-            sections.forEach(section => {
-                observer.observe(section);
+            }, {
+                threshold: 0.1
             });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatbotToggle = document.getElementById('chatbot-toggle');
+            const chatbot = document.getElementById('chatbot');
+            const chatbotClose = document.getElementById('chatbot-close');
+            const chatbotMessages = document.getElementById('chatbot-messages');
+            const chatbotInput = document.getElementById('chatbot-text');
+            const chatbotSend = document.getElementById('chatbot-send');
+
+            // Toggle chatbot visibility
+            chatbotToggle.addEventListener('click', () => {
+                chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
+            });
+
+            chatbotClose.addEventListener('click', () => {
+                chatbot.style.display = 'none';
+            });
+
+            // Handle sending messages
+            chatbotSend.addEventListener('click', () => {
+                const userMessage = chatbotInput.value.trim();
+                if (userMessage) {
+                    addMessage(userMessage, 'user');
+                    chatbotInput.value = '';
+                    getBotResponse(userMessage);
+                }
+            });
+
+            chatbotInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    chatbotSend.click();
+                }
+            });
+
+            // Add message to the chat
+            function addMessage(message, sender) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('chatbot-message', sender);
+                messageElement.textContent = message;
+                chatbotMessages.appendChild(messageElement);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+
+            // Simulate bot response
+            async function getBotResponse(userMessage) {
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer YOUR_API_KEY'
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-3.5-turbo',
+                        messages: [{ role: 'user', content: userMessage }]
+                    })
+                });
+
+                const data = await response.json();
+                const botResponse = data.choices[0].message.content;
+                addMessage(botResponse, 'bot');
+            }
         });
     </script>
 </body>
